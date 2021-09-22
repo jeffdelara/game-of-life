@@ -4,14 +4,83 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="css/style.css">
     <title>Game of Life</title>
 </head>
-<body>
+<body onload="init()">
     <div class="container">
         <canvas id="canvas"></canvas>
+
+        <div id="panel">
+            <div id="logo">
+                <img src="images/logo.png" alt="">
+                <h1>Game of Life</h1> by Jeff de Lara
+            </div>
+            <div id="controls">
+                <button id="random" class="btn-second" onclick="init()"><i class='bx bx-shape-circle'></i> Auto</button>
+                <button id="start" onclick="start()"><i class='bx bx-power-off' ></i> Start</button>
+                <button id="play" onclick="play()"><i class='bx bx-play-circle'></i> Run</button>
+                <button id="refresh" onclick="refresh()"><i class='bx bx-refresh' ></i> Restart</button>
+            </div>
+            <div id="github">
+                Get the code on <a href="https://github.com/jeffdelara/game-of-life" target="_blank"><i class='bx bxl-github'></i> Github</a>
+            </div>
+        </div>
+
+        
     </div>
-    <script src="js/cell.js"></script>
+    <script src="js/game.js"></script>
     <script src="js/main.js"></script>
+    <script>
+
+        const play_btn = document.querySelector("#play");
+        const start_btn = document.querySelector("#start");
+        const refresh_btn = document.querySelector("#refresh");
+
+        function hideAll()
+        {
+            play_btn.style.display = "none";
+            start_btn.style.display = "none";
+            refresh_btn.style.display = "none";
+        }
+
+        function init()
+        {
+            hideAll();
+
+            for(let i = 0; i < 60; i++)
+            {
+                const row = parseInt( Math.random() * 40 ) + 10;
+                const col = parseInt( Math.random() * 80 ) + 10;
+                game.createSpaceShip(row, col);
+            }
+            game.game_state = 1;
+
+            start_btn.style.display = "inline-block";
+        }
+
+        function start()
+        {
+            game.init();
+            
+            hideAll();
+            play_btn.style.display = "inline-block";
+        }
+
+        function play()
+        {
+            game.game_state = 1;
+
+            hideAll();
+            refresh_btn.style.display = "inline-block";
+        }
+
+        function refresh()
+        {
+            start();
+            console.log("refrresh");
+        }
+    </script>
 </body>
 </html>
