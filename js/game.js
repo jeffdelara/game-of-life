@@ -85,7 +85,6 @@ class Game
     draw()
     {
         this.drawMap();
-        // grid lines
         this.drawGridLines();
     }
 
@@ -162,35 +161,27 @@ class Game
 
         // top 
         neighbors += this.getCell(row - 1, col);
-        // this.grid[row - 1][col];
 
         // bottom 
         neighbors += this.getCell(row + 1, col);
-        // this.grid[row + 1][col];
 
         // left
         neighbors += this.getCell(row, col - 1);
-        // this.grid[row][col - 1]; 
 
         // right 
         neighbors += this.getCell(row, col + 1);
-        // this.grid[row][col + 1];
 
         // top left
         neighbors += this.getCell(row - 1, col - 1);
-        // this.grid[row - 1][col - 1];
 
         // top right
         neighbors += this.getCell(row - 1, col + 1);
-        // this.grid[row - 1][col + 1];
 
         // bottom left 
         neighbors += this.getCell(row + 1, col - 1);
-        // this.grid[row + 1][col - 1];
 
         // bottom right
         neighbors += this.getCell(row + 1, col + 1); 
-        // this.grid[row + 1][col + 1];
 
         if(cell_states[cell] === 'alive')
         {
@@ -287,10 +278,10 @@ class Game
         const ctx = this.ctx;
 
         const length = this.grid[0].length;
+        ctx.strokeStyle = "#EEEEEE";
 
         for(let i = 0; i <= length; i++)
         {
-            ctx.strokeStyle = "#EEEEEE";
             ctx.beginPath();
             ctx.moveTo(i * this.cell_width, 0);
             ctx.lineTo(i * this.cell_width, this.height);
