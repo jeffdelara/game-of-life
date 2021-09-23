@@ -17,7 +17,7 @@ canvas.addEventListener('click', function(event){
 
 function gameLoop()
 {
-    const fps = 25;
+    const fps = 30;
 
     game.update();
     game.draw();
